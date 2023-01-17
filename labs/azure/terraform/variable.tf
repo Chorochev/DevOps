@@ -10,3 +10,15 @@ variable "location" {
   default     = "East Asia"
   description = "Region"
 }
+
+variable "qa_resource_group_name" {
+  type        = string
+  default     = "rg-lab-qa-eastasia-001"
+  description = "The resource group name of QA"
+}
+
+variable "qa_virtual_network_name" {
+  type        = string
+  default     = "net-lab-qa-eastasia-001"
+  description = "The virtual network name of QA"
+}

@@ -15,7 +15,14 @@ provider "azurerm" {
   subscription_id = var.subscription_id
 }
 
-resource "azurerm_resource_group" "name" {
-  name     = "rg-lab-qa-eastasia-001"
+resource "azurerm_resource_group" "qa" {
+  name     = var.qa_resource_group_name
   location = var.location
+}
+
+resource "azurerm_virtual_network" "qa" {
+  name = var.qa_virtual_network_name
+  location = azurerm_resource_group.qa.location
+  resource_group_name = azurerm_resource_group.qa.name
+  address_space = [ "10.0.0.0/16" ]
 }
