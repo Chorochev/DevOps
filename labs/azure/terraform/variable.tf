@@ -22,3 +22,9 @@ variable "qa_virtual_network_name" {
   default     = "net-lab-qa-eastasia-001"
   description = "The virtual network name of QA"
 }
+
+variable "qa_network_watcher_name" {
+  type        = string
+  default     = "netw-lab-qa-eastasia-001"
+  description = "The network watcher name of QA"
+}

@@ -21,8 +21,14 @@ resource "azurerm_resource_group" "qa" {
 }
 
 resource "azurerm_virtual_network" "qa" {
-  name = var.qa_virtual_network_name
-  location = azurerm_resource_group.qa.location
+  name                = var.qa_virtual_network_name
+  location            = azurerm_resource_group.qa.location
   resource_group_name = azurerm_resource_group.qa.name
-  address_space = [ "10.0.0.0/16" ]
+  address_space       = ["10.0.0.0/16"]
+}
+
+resource "azurerm_network_watcher" "qa" {
+  name                = var.qa_network_watcher_name
+  location            = azurerm_resource_group.qa.location
+  resource_group_name = azurerm_resource_group.qa.name
 }
