@@ -13,3 +13,4 @@ planout
 #terraform init files 
 **/.terraform
 **/.terraform.lock.hcl
+**/.terraform.tfstate.lock.info
