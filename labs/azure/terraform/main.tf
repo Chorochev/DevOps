@@ -16,21 +16,21 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "main" {
-  name     = var.qa_resource_group_name
+  name     = "rg-${var.workload}-${var.environment}-${var.location}-${var.instance}"
   location = var.location
 }
 
 resource "azurerm_virtual_network" "main" {
-  name                = var.qa_virtual_network_name
+  name                = "net-${var.workload}-${var.environment}-${var.location}-${var.instance}"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
-  address_space       = ["10.0.0.0/16"]
-
-  depends_on = [azurerm_resource_group.main]
+  address_space       = var.address_space
+  
+  depends_on = [azurerm_resource_group.main, azurerm_network_watcher.main]
 }
 
 resource "azurerm_network_watcher" "main" {
-  name                = var.qa_network_watcher_name
+  name                = "netw-${var.workload}-${var.environment}-${var.location}-${var.instance}"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 

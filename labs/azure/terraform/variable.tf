@@ -6,25 +6,24 @@ variable "subscription_id" {
 }
 
 variable "location" {
-  type        = string
-  default     = "East Asia"
+  type        = string  
   description = "Region"
 }
 
-variable "qa_resource_group_name" {
-  type        = string
-  default     = "rg-lab-qa-eastasia-001"
-  description = "The resource group name of QA"
+variable "environment" {
+  type = string
+  description = "The environment like dev, qa, prod etc.."
 }
 
-variable "qa_virtual_network_name" {
-  type        = string
-  default     = "net-lab-qa-eastasia-001"
-  description = "The virtual network name of QA"
+variable "address_space" {
+  type = list(string)
 }
 
-variable "qa_network_watcher_name" {
-  type        = string
-  default     = "netw-lab-qa-eastasia-001"
-  description = "The network watcher name of QA"
+variable "workload" {
+  type = string  
+}
+
+variable "instance" {
+  type = string  
+  default = "001"
 }
