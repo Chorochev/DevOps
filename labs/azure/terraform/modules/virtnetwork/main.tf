@@ -14,6 +14,17 @@ resource "azurerm_virtual_network" "main" {
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   address_space       = var.address_space
-  
+
+  depends_on = [azurerm_resource_group.main, azurerm_network_watcher.main]
+}
+
+////////////////////
+// Network watcher
+////////////////////
+resource "azurerm_network_watcher" "main" {
+  name                = "netw-${var.workload}-${var.environment}-${var.location}-${var.instance}"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+
   depends_on = [azurerm_resource_group.main]
 }
