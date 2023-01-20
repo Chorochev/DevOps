@@ -14,3 +14,6 @@ terraform plan -var-file="prod.tfvars"
 terraform apply -var-file="prod.tfvars"
 terraform workspace select prod_workspace
 terraform workspace delete prod_workspace
+
+#####################################
+terraform workspace list

@@ -1,30 +1,30 @@
 ////////////////////
 // Resource group
 ////////////////////
-resource "azurerm_resource_group" "main" {
+resource "azurerm_resource_group" "this" {
   name     = "rg-${var.workload}-${var.environment}-${var.location}-${var.instance}"
   location = var.location
 }
 
 ////////////////////
-// Virtual network
+// Network watcher
 ////////////////////
-resource "azurerm_virtual_network" "main" {
-  name                = "net-${var.workload}-${var.environment}-${var.location}-${var.instance}"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
-  address_space       = var.address_space
+resource "azurerm_network_watcher" "this" {
+  name                = "netw-${var.workload}-${var.environment}-${var.location}-${var.instance}"
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
 
-  depends_on = [azurerm_resource_group.main, azurerm_network_watcher.main]
+  depends_on = [azurerm_resource_group.this]
 }
 
 ////////////////////
-// Network watcher
+// Virtual network
 ////////////////////
-resource "azurerm_network_watcher" "main" {
-  name                = "netw-${var.workload}-${var.environment}-${var.location}-${var.instance}"
-  location            = azurerm_resource_group.main.location
-  resource_group_name = azurerm_resource_group.main.name
+resource "azurerm_virtual_network" "this" {
+  name                = "net-${var.workload}-${var.environment}-${var.location}-${var.instance}"
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+  address_space       = var.net_address_space
 
-  depends_on = [azurerm_resource_group.main]
+  depends_on = [azurerm_resource_group.this, azurerm_network_watcher.this]
 }
