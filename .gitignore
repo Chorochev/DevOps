@@ -7,8 +7,8 @@
 planout
 
 #terraform variables
-**/terraform.tfvars
-**/.terraform.tfvars
+**/*.tfvars
+**/.*.tfvars
 
 #terraform init files 
 **/.terraform

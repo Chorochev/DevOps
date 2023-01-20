@@ -13,24 +13,14 @@ provider "azurerm" {
   features {}
 
   subscription_id = var.subscription_id
-  tenant_id = var.tenant_id
+  tenant_id       = var.tenant_id
 }
 
-module "qa_virtual_network" {
+module "virtual_network" {
   source = "../modules/virtnetwork"
 
-  environment   = "qa"
-  location      = "eastasia"
-  workload      = "lab"
-  instance      = "001"
-  address_space = ["10.0.0.0/16"]
-}
-
-module "prod_virtual_network" {
-  source = "../modules/virtnetwork"
-
-  environment   = "prod"
-  location      = "southeastasia"
+  environment   = var.environment
+  location      = var.location
   workload      = "lab"
   instance      = "001"
   address_space = ["10.0.0.0/16"]
