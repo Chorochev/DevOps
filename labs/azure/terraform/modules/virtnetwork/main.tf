@@ -35,7 +35,7 @@ resource "azurerm_virtual_network" "this" {
 resource "azurerm_subnet" "this" {
   count = var.subnet_count
 
-  name                 = "subnet-${var.workload}-${var.environment}-${var.location}-00${count.index}"
+  name                 = "subnet-${var.subnet_types[count.index]}-${var.workload}-${var.environment}-${var.location}-00${count.index}"
   virtual_network_name = azurerm_virtual_network.this.name
   resource_group_name  = azurerm_resource_group.this.name
   address_prefixes     = ["${var.subnet_address_prefixes[count.index]}"]

@@ -25,5 +25,6 @@ module "virtual_network" {
   instance                = var.instance
   net_address_space       = var.net_address_space
   subnet_count            = var.subnet_count
+  subnet_types            = var.subnet_types
   subnet_address_prefixes = var.subnet_address_prefixes
 }

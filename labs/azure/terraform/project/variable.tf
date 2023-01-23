@@ -43,6 +43,11 @@ variable "subnet_count" {
   description = "The subnet count"
 }
 
+variable "subnet_types" {
+  type = list(string)  
+  description = "The subnet types (private/public)"
+}
+
 variable "subnet_address_prefixes" {
   type = list(string)
   description = "The subnet addresses"
