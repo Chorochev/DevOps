@@ -19,9 +19,11 @@ provider "azurerm" {
 module "virtual_network" {
   source = "../modules/virtnetwork"
 
-  environment       = var.environment
-  location          = var.location
-  workload          = var.workload
-  instance          = var.instance
-  net_address_space = var.net_address_space
+  environment             = var.environment
+  location                = var.location
+  workload                = var.workload
+  instance                = var.instance
+  net_address_space       = var.net_address_space
+  subnet_count            = var.subnet_count
+  subnet_address_prefixes = var.subnet_address_prefixes
 }

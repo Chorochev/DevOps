@@ -27,3 +27,14 @@ variable "instance" {
   default     = "001"
   description = "Instance"
 }
+
+variable "subnet_count" {
+  type = number
+  default = 1
+  description = "The subnet count"
+}
+
+variable "subnet_address_prefixes" {
+  type = list(string)
+  description = "The subnet addresses"
+}
