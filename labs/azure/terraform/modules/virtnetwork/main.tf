@@ -42,3 +42,17 @@ resource "azurerm_subnet" "this" {
   
   depends_on = [azurerm_virtual_network.this]
 }
+
+resource "azurerm_network_interface" "name" {
+  count = var.subnet_count
+
+  name                = "interface-${var.subnet_types[count.index]}-${var.workload}-${var.environment}-${var.location}-${var.instance}"
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+
+  ip_configuration {
+    name = "internal${count.index}"
+    subnet_id = azurerm_subnet.this[count.index].id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
