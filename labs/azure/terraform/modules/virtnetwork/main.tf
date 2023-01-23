@@ -47,9 +47,7 @@ resource "azurerm_subnet" "this" {
 // The public ip
 //////////////////////////
 resource "azurerm_public_ip" "this" {
-  count = var.subnet_count
-
-  name                = "publicip-${var.subnet_types[count.index]}-${var.workload}-${var.environment}-${var.location}-${var.instance}"
+  name                = "publicip-${var.workload}-${var.environment}-${var.location}-${var.instance}"
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
   allocation_method   = "Dynamic"
@@ -70,7 +68,7 @@ resource "azurerm_network_interface" "this" {
     subnet_id                     = azurerm_subnet.this[count.index].id
     private_ip_address_allocation = "Dynamic"
 
-    public_ip_address_id = azurerm_public_ip.this[count.index].id
+    public_ip_address_id = var.subnet_types[count.index] == "public" ? azurerm_public_ip.this.id : null
   }
 }
 
