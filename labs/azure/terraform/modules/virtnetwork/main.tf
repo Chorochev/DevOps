@@ -43,6 +43,9 @@ resource "azurerm_subnet" "this" {
   depends_on = [azurerm_virtual_network.this]
 }
 
+//////////////////////////
+// The network interface
+//////////////////////////
 resource "azurerm_network_interface" "name" {
   count = var.subnet_count
 
