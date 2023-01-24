@@ -20,3 +20,6 @@ terraform workspace list
 terraform workspace new ****
 terraform workspace select ****
 terraform init
+
+terraform apply -destroy
+terraform plan -destroy
