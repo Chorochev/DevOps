@@ -27,4 +27,5 @@ module "virtual_network" {
   subnet_count            = var.subnet_count
   subnet_types            = var.subnet_types
   subnet_address_prefixes = var.subnet_address_prefixes
+  firewall                = var.firewall
 }
