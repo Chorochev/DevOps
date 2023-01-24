@@ -109,7 +109,7 @@ resource "azurerm_linux_virtual_machine" "this" {
 ///////////////////////
 // The security group
 ///////////////////////
-resource "azurerm_network_security_group" "example" {
+resource "azurerm_network_security_group" "this" {
   name                = "secgroup-${var.workload}-${var.environment}-${var.location}-${var.instance}"
   location            = azurerm_resource_group.this.location
   resource_group_name = azurerm_resource_group.this.name
@@ -137,5 +137,22 @@ resource "azurerm_network_security_group" "example" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
+}
 
+# ////////////////////////////////////////////////////////////////////////////////
+# // Associates a Network Security Group with a Subnet within a Virtual Network.
+# ////////////////////////////////////////////////////////////////////////////////
+# resource "azurerm_subnet_network_security_group_association" "this" {
+#   subnet_id                 = azurerm_subnet.this[1].id # 1 - public
+#   network_security_group_id = azurerm_network_security_group.this.id
+# }
+
+# /////////////////////////////////////////////////////////
+# // Associates a network interface with a security_group.
+# /////////////////////////////////////////////////////////
+resource "azurerm_network_interface_security_group_association" "this" {
+  network_interface_id      = azurerm_network_interface.this[1].id # 1 - public
+  network_security_group_id = azurerm_network_security_group.this.id
+
+  depends_on = [azurerm_network_interface.this, azurerm_network_security_group.this]
 }
