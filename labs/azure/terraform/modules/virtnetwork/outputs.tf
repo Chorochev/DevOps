@@ -10,5 +10,35 @@ output "network_watcher" {
 
 output "virtual_network" {
   value       = azurerm_virtual_network.this.name
-  description = "The virtual_network"
+  description = "The virtual network"
+}
+
+output "subnets" {
+  value       = azurerm_subnet.this[*].name
+  description = "The subnets"
+}
+
+output "public_ip" {
+  value       = azurerm_public_ip.this.public_ip_prefix_id
+  description = "The public ip"
+}
+
+output "network_interfaces" {
+  value       = azurerm_network_interface.this[*].name
+  description = "The network interfaces"
+}
+
+output "virtual_machines" {
+  value       = azurerm_linux_virtual_machine.this[*].name
+  description = "The linux virtual machines"
+}
+
+output "network_security_group" {
+  value       = azurerm_network_security_group.this.name
+  description = "The network security group."
+}
+
+output "association" {
+  value       = azurerm_network_interface_security_group_association.this.id
+  description = "The associates a network interface with a security_group."
 }
