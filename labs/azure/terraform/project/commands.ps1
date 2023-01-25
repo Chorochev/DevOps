@@ -23,3 +23,4 @@ terraform init
 
 terraform apply -destroy
 terraform plan -destroy
+terraform destroy -refresh=false

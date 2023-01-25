@@ -19,7 +19,7 @@ output "subnets" {
 }
 
 output "public_ip" {
-  value       = azurerm_public_ip.this.public_ip_prefix_id
+  value       = azurerm_public_ip.this.ip_address
   description = "The public ip"
 }
 
